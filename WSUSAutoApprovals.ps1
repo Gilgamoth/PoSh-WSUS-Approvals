@@ -67,7 +67,7 @@ $Uninstall = [Microsoft.UpdateServices.Administration.UpdateApprovalAction]::Uni
 
 $WSUSSvr = [Microsoft.UpdateServices.Administration.AdminProxy]::getUpdateServer($Cfg_WSUSServer, $Cfg_WSUSSSL, $Cfg_WSUSPort)
 
-$Group = $WSUSSvr.GetComputerTargetGroups() | where {$_.Name -eq "All Computers"}
+$Group = $WSUSSvr.GetComputerTargetGroups() | Where-Object {$_.Name -eq "All Computers"}
 
 # Get the Updates that have arrived in the last 24 hours and if there are any, add their details to the report e-mail
 $UpdateScope = new-object Microsoft.UpdateServices.Administration.UpdateScope
