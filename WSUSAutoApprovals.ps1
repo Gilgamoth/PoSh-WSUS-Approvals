@@ -105,6 +105,10 @@ If ($UTACount -gt 0) {
         $UArrival = $Update.ArrivalDate
         $UCreation = $Update.CreationDate
         write-host $update.Title -NoNewline
+		If (($Update.RequiresLicenseAgreementAcceptance -eq $true) -and ($Update.GetLicenseAgreement().IsAccepted -eq $false)) {
+			write-host " Accepting EULA" -NoNewline
+			$Update.AcceptLicenseAgreement()
+		}
 		If ($DeadlineDays -gt 0) {
 			$Results = $Update.Approve($Install,$Group,$UpdateDeadline)
 		} Else {
